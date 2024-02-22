@@ -3,7 +3,7 @@ import rasterio
 from rasterio.plot import show
 from rasterio.plot import show_hist
 
-from scripts.save_results_normal import current_time
+from . scripts.save_results_normal import current_time
 
 import os
 

@@ -2,8 +2,8 @@ import os
 import numpy as np
 import logging
 
-from scripts.read_inputs import read_raster
-from scripts import read_inputs, anchor_1, individual_costs, save_results_normal
+from . scripts.read_inputs import read_raster
+from . scripts import read_inputs, anchor_1, individual_costs, save_results_normal
 
 
 class Parameters:

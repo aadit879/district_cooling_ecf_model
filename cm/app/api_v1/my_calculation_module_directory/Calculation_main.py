@@ -9,8 +9,8 @@ import shutil
 
 # from initialize import Parameters as Param
 
-from scripts.read_inputs import read_raster
-from scripts import anchor_1, clustering, read_inputs, save_results_with_param, save_results_normal, polygonize, \
+from . scripts.read_inputs import read_raster
+from . scripts import anchor_1, clustering, read_inputs, save_results_with_param, save_results_normal, polygonize, \
     estimated_supply_sizing, result_summary
 from scripts.distance_identification import nearest_source
 

@@ -1,7 +1,7 @@
 import time
 
-from initialize import Parameters
-from Calculation_main import MainCalculation
+from . initialize import Parameters
+from . Calculation_main import MainCalculation
 import os
 
 from rasterio.plot import show

@@ -1,5 +1,8 @@
 import os
-os.chdir(os.path.join(os.getcwd(), r'cm\app\api_v1\my_calculation_module_directory'))
+#os.chdir(os.path.join(os.getcwd(), r'cm\app\api_v1\my_calculation_module_directory'))
+os.chdir(os.path.join(os.getcwd(), r'cm\app\api_v1'))
+
+
 
 import sys
 sys.path.append('.')

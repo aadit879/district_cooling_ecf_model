@@ -8,7 +8,7 @@ from ..constant import CM_NAME
 import pandas as pd
 import time
 
-from my_calculation_module_directory.Main import DC_identification
+from . my_calculation_module_directory.Main import DC_identification
 
 """ Entry point of the calculation module function"""
 

@@ -1,6 +1,6 @@
 import geopandas as gpd
 
-from scripts import save_results_normal, read_inputs
+import save_results_normal, read_inputs
 
 
 def supply_sizing(COP,fld, af,cf,r,T, output_polygon_name, output_directory, electircity_price_EurpKWh):

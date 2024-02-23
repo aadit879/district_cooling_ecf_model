@@ -2,7 +2,7 @@ import numpy as np
 
 import random
 
-from scripts.read_inputs import read_raster
+from . read_inputs import read_raster
 
 import warnings
 

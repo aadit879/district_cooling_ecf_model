@@ -6,8 +6,8 @@ import geopandas as gpd
 
 from scipy.spatial import cKDTree
 
-from scripts.polygonize import polygonize
-from scripts.save_results_normal import write_tiff, current_time
+from . polygonize import polygonize
+from . save_results_normal import write_tiff, current_time
 
 import warnings
 

@@ -1,7 +1,7 @@
 import geopandas as gpd
 
 from shapely.geometry import Point, LineString
-from scripts.read_inputs import input_directory
+from . read_inputs import input_directory
 
 def nearest_source(changing_parameter,shape_file_name,run_start_time,directory):
 

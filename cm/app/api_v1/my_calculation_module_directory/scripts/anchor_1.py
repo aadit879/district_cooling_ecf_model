@@ -9,7 +9,7 @@ import warnings
 
 ##delete
 from scripts import save_results_normal as save_results
-from scripts.pipe_cost_data import data as pipe_cost_data
+from . pipe_cost_data import data as pipe_cost_data
 
 def peak_estimate(approach, tued_mwh, FLH_cooling_days , T_ambient=21, T_set=15, af=0.9, cf=0.5):
     '''

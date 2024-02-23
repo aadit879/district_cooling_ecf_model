@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from scripts import polygonize
-from scripts import save_results_with_param
+from . import polygonize
+from . import save_results_with_param
 
 
 def print_summary(clusters, anchor_points_count, potential_demand_MWh, cluster_mask, changing_parameter,

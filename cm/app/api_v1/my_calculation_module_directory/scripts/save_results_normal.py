@@ -1,4 +1,4 @@
-from scripts import save_results_with_param
+from . import save_results_with_param
 
 import numpy as np
 from osgeo import gdal

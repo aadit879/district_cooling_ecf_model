@@ -94,50 +94,6 @@ def individual_supply_calculations_inv_new(raster,af,cf,FLH_cooling_days,r,T, el
 
     return LCOC_ind
 
-
-# cap_op = tued_mwh - individual_supplied
-# LCOC_ind_cap_op = individual_supply_calculations_inv(cap_op)
-
-# def individual_supply_calculations_inv_ext(raster, electircity_price_EurpKWh, SEER):
-#     #TODO: Needs to be completely changed (refer individual_supply_calculations_inv_new)
-#     '''
-#     Calculation for those randomly identified cells where the units
-#     are assumed to be pre-installed. No investment costs accounted.
-#     :param raster: raster cells with the pre-identified individual supply
-#     :return:
-#     '''
-#     ##assessment for Air Conditioning
-#     # technology availability (high value indicates reliability)
-#     af = 0.9
-#     # technology capacity factor (higher value indicates efficeicny)
-#     cf = 0.7
-#     flh = 60
-#     # TODO: Can the 8760 be further reduced to decrease the FLH? Check literature # where is the 24
-#     maximum_capacity_MW = raster / (8760 * af * cf)
-#
-#     # investment_cost_EurpMW =  (300.58 * np.exp(-1.003 * maximum_capacity_MW)) * 1000
-#     # investment_cost_EurpMW[np.where(investment_cost_EurpMW == investment_cost_EurpMW.max())]=0
-#     # total_investment_costs_Eur = investment_cost_EurpMW * maximum_capacity_MW
-#     r = 0.06
-#     T = 20
-#     crf = (r * (1 + r) ** T) / (((1 + r) ** T) - 1)
-#     # investment_anualized_EUR = total_investment_costs_Eur * crf
-#
-#     # operation_cost_EurpMW = (12023 * np.exp(-1.003 * maximum_capacity_MW))
-#     # operation_cost_EurpMW[np.where(operation_cost_EurpMW  == operation_cost_EurpMW .max())]=0
-#     # annual_operation_cost_Eur = operation_cost_EurpMW * maximum_capacity_MW
-#
-#     # SEER = 3.6
-#     electricity_consumption_mwh = raster / SEER
-#     # electircity_price_EurpKWh = 0.44
-#     annual_electricity_expense_Eur = electricity_consumption_mwh * electircity_price_EurpKWh * 100
-#
-#     total_annual_costs = annual_operation_cost_Eur + annual_electricity_expense_Eur
-#
-#     LCOC_ind = total_annual_costs / (raster * crf)
-#     return LCOC_ind
-
-
 def random_select_30pct(arr, anchor):
     arr_sum = arr.sum()
     target_sum = arr_sum * 0.3

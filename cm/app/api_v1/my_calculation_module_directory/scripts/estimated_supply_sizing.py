@@ -1,7 +1,5 @@
 import geopandas as gpd
 
-import save_results_normal, read_inputs
-
 
 def supply_sizing(COP,fld, af,cf,r,T, output_polygon_name, output_directory, electircity_price_EurpKWh):
     vector = gpd.read_file(output_polygon_name)

@@ -1,8 +1,4 @@
 from osgeo import gdal
-import rasterio
-from rasterio.plot import show
-from rasterio.plot import show_hist
-
 from . save_results_normal import current_time
 
 import os

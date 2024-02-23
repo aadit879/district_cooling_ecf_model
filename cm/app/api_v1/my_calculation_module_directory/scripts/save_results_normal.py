@@ -4,7 +4,7 @@ import numpy as np
 from osgeo import gdal
 import os
 
-# output_directory = 'G:\\My Drive\\TU WIEN\\Work\\PhD\\M1\\test_results\\'
+
 file_directory = os.path.dirname(os.path.abspath(__file__))
 root_directory = os.path.abspath(os.path.join(file_directory, '..'))
 

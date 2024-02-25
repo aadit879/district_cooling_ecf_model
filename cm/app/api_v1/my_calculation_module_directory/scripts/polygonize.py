@@ -44,6 +44,8 @@ def polygonize(raster_layer_name,directory,output_name):
     raster = gdal.Open(directory + raster_layer_name)
     band = raster.GetRasterBand(1)
     srs = osr.SpatialReference()
+
+    #band = input_array
     epsg = 3035
     srs.ImportFromEPSG(epsg)
     shpDriver = ogr.GetDriverByName('ESRI Shapefile')
@@ -63,9 +65,11 @@ def polygonize(raster_layer_name,directory,output_name):
     # save layer
     outDataSource = outLayer = band = None
 
-
-
     return None
+
+
+#def polygonize_np()
+
 
 
 def estimate_head_loss(average_diameter_in_mm,grid_length):

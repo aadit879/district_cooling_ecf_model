@@ -21,9 +21,9 @@ class Parameters:
         self.depreciation_dc = depriciation_dc
         self.depreciation_ac = depriciation_ac
 
-        self.gfa_m2 = int_raster_gfa_tot
-        self.gfa_nonres_m2 = int_raster_gfa_non_res
-        self.tued_mwh = int_raster_cdm
+        self.gfa_m2 = read_inputs.read_raster2(int_raster_gfa_tot)[3]
+        self.gfa_nonres_m2 = read_inputs.read_raster2(int_raster_gfa_non_res)[3]
+        self.tued_mwh = read_inputs.read_raster2(int_raster_cdm)[3]
 
         self.output_directory = output_directory
 
@@ -37,7 +37,8 @@ class Parameters:
 
         self.pipe_proxy = 1  # 1: Plot_ratio; 2: Road
         if self.pipe_proxy == 2:
-            self.road_m = read_raster('road_raster_grid_aggregated.tif')[3]
+            print('Read road inputs')
+            # self.road_m = read_raster('road_raster_grid_aggregated.tif')[3]
 
         # percentile for the thresholds
         self.maximum_energy_threshold = 75  # (default: 75 )

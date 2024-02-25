@@ -28,9 +28,9 @@ def DC_identification(electricity_prices, flh_cooling_days, COP_DC, delta_T_dc, 
     # for electircity_price_EurpKWh in params.electricity_prices:
     #     CM.all_runs(electircity_price_EurpKWh)
 
-    clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh,\
-    network_length, anchor_to_cluster, LCOC_threshold, tot_demand_expan,\
-    avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,\
+    clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, \
+    network_length, anchor_to_cluster, LCOC_threshold, tot_demand_expan, \
+    avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa, \
     summary_df, cluster_shape, symbol_vals_str_1 = CM.all_runs(output_raster_demand_covered,output_raster_levl_grid_cost, output_raster_network_length,
                  output_raster_grid_investment_cost,  output_raster_average_diameter, output_shp)
 
@@ -73,7 +73,7 @@ def DC_identification(electricity_prices, flh_cooling_days, COP_DC, delta_T_dc, 
 
 
 
-    return (theoretical_demand, actual_demand, dc_coverage, graphics, summary_df, cluster_shape, symbol_vals_str_1)
+    return (theoretical_demand, actual_demand, dc_coverage, graphics, summary_df, cluster_shape,symbol_vals_str_1)
 
     # clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, LCOC_threshold,
     # tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa, grid_investment_unit_costs_Eurperm,

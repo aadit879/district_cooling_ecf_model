@@ -17,3 +17,12 @@ def read_raster(file_name, input_directory = input_directory):
     band = src_1.GetRasterBand(1)
     array = band.ReadAsArray()
     return [gt,proj,band,array]
+
+def read_raster2(directory):
+    src_1 = gdal.Open(directory)
+    src_1.RasterCount
+    gt = src_1.GetGeoTransform()
+    proj = src_1.GetProjection()
+    band = src_1.GetRasterBand(1)
+    array = band.ReadAsArray()
+    return [gt,proj,band,array]

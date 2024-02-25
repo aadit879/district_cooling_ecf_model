@@ -4,7 +4,6 @@ import sys
 import coverage
 
 from tests import suite
-
 COV = coverage.coverage(branch=True, include='cm/app/*')
 COV.start()
 

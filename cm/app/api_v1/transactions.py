@@ -25,6 +25,21 @@ if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
     os.chmod(UPLOAD_DIRECTORY, 0o777)
 
+# import shutil
+# if os.path.exists(UPLOAD_DIRECTORY):
+#     # Iterate over all the entries
+#     for entry in os.listdir(UPLOAD_DIRECTORY):
+#         print('***** yes path exists ******')
+#         # Create full path to the item
+#         full_path = os.path.join(UPLOAD_DIRECTORY, entry)
+#         # Check if it's a file or directory
+#         if os.path.isfile(full_path) or os.path.islink(full_path):
+#             # If it's a file or link, delete it
+#             os.unlink(full_path)
+#         elif os.path.isdir(full_path):
+#             # If it's a directory, delete it and all its contents
+#             shutil.rmtree(full_path)
+
 @api.route('/files/<string:filename>', methods=['GET'])
 def get(filename):
     # get file stored in the api directory
@@ -137,13 +152,13 @@ def compute():
 
 
 
-    inputs_vector_selection = helper.validateJSON(data["inputs_vector_selection"])
-    print ('inputs_vector_selection', inputs_vector_selection)
-    LOGGER.info('inputs_vector_selection', inputs_vector_selection)
+    #inputs_vector_selection = helper.validateJSON(data["inputs_vector_selection"])
+    #print ('inputs_vector_selection', inputs_vector_selection)
+    #LOGGER.info('inputs_vector_selection', inputs_vector_selection)
 
     output_directory = UPLOAD_DIRECTORY
     # call the calculation module function
-    result = calculation_module.calculation(output_directory, inputs_raster_selection,inputs_vector_selection,inputs_parameter_selection)
+    result = calculation_module.calculation(output_directory, inputs_raster_selection,inputs_parameter_selection)
 
     response = {
         'result': result

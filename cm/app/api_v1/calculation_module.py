@@ -17,7 +17,7 @@ from . my_calculation_module_directory.Main import DC_identification
 #TODO: CM provider can "add all the parameters he needs to run his CM # AM:DONE
 #TODO: CM provider can "return as many indicators as he wants" # AM:DONE
 
-def calculation(output_directory, inputs_raster_selection,inputs_vector_selection, inputs_parameter_selection):
+def calculation(output_directory, inputs_raster_selection,inputs_parameter_selection):
     #TODO the folowing code must be changed by the code of the calculation module
     '''
        # AM: all input parameters defined in the constant.py file are to be called here
@@ -45,7 +45,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_vector_selectio
     in_raster_gfa_tot = inputs_raster_selection["gross_floor_area"]
     in_raster_gfa_non_res = inputs_raster_selection[
         "gross_floor_area"]  # TODO: AM: is this also correct for nonresidential
-    in_raster_cdm = inputs_raster_selection["cold"]  # TODO : AM: check the type; should match constant.py
+    in_raster_cdm = inputs_raster_selection["heat"]  # TODO : AM: check the type; should match constant.py
 
     # generate the output raster file
 

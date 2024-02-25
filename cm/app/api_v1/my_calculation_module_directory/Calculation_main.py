@@ -12,11 +12,11 @@ import shutil
 from . scripts.read_inputs import read_raster
 from . scripts import anchor_1, clustering, read_inputs, save_results_with_param, save_results_normal, polygonize, \
     estimated_supply_sizing, result_summary
-from scripts.distance_identification import nearest_source
+#from scripts.distance_identification import nearest_source
 
 # from all_test_codes import new_clustering_test
 
-from initialize import Parameters
+from . initialize import Parameters
 
 
 
@@ -34,18 +34,18 @@ class MainCalculation:
             setattr(self, attr_name, attr_value)
 
         self.output_log = self.output_directory + save_results_normal.current_time + '\\' + 'info.log'
-        self.log_parameters()
+        #self.log_parameters()
 
-    def log_parameters(self):
-        logging_text = "\n\n"
-        params_dict = vars(self)
-        col_width = 5 + max(len(key) for key in params_dict.keys())
-        for key in params_dict.keys():
-            value = params_dict[key]
-            if not isinstance(value, np.ndarray) or len(value.shape) != 2:
-                logging_text = logging_text + "".join(key.ljust(col_width) + str(value).ljust(col_width) + '\n')
-        with open(self.output_log, 'w') as f:
-            f.write(logging_text)
+    # def log_parameters(self):
+    #     logging_text = "\n\n"
+    #     params_dict = vars(self)
+    #     col_width = 5 + max(len(key) for key in params_dict.keys())
+    #     for key in params_dict.keys():
+    #         value = params_dict[key]
+    #         if not isinstance(value, np.ndarray) or len(value.shape) != 2:
+    #             logging_text = logging_text + "".join(key.ljust(col_width) + str(value).ljust(col_width) + '\n')
+    #     with open(self.output_log, 'w') as f:
+    #         f.write(logging_text)
 
     # Input Variables
     def all_runs(self,output_raster_demand_covered,output_raster_levl_grid_cost, output_raster_network_length,
@@ -76,7 +76,7 @@ class MainCalculation:
                            'potential_anchors_MW']
 
         run_start_time = save_results_normal.current_time
-        output_directory = self.output_directory + run_start_time + '\\'
+        output_directory = self.output_directory + '/' + run_start_time + '/'
         for prim_name in files_save_list:
             file_name = prim_name + '_' + run_start_time[-8:-3] + '.tif'
             if not os.path.exists(output_directory + file_name):
@@ -84,8 +84,9 @@ class MainCalculation:
         #######################################################################################################################
         # LCOC_threshold = changing_parameter
         ## clustering based on the identified in samples
-        anchor_df = read_raster('potential_anchors_MW' + '_' + save_results_normal.current_time[-8:-3] + '.tif',
-                                input_directory=read_inputs.input_directory2)[3]
+        # anchor_df = read_raster('potential_anchors_MW' + '_' + save_results_normal.current_time[-8:-3] + '.tif',
+        #                         input_directory=read_inputs.input_directory2)[3]
+        anchor_df = potential_anchors_MW
         anchor_df = clustering.anchor_points(anchor_df)  ## converts the anchor points to binary
 
         function_run = Parameters.individaul_LCOC_anchors(self)
@@ -124,12 +125,17 @@ class MainCalculation:
             print(
                 'No clusters identified for electricity price of ' + str(electircity_price_EurpKWh * 1000) + ' Eur/MWh')
 
-            clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, LCOC_threshold, tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa = np.zeros(
-                10)
+            clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, \
+            LCOC_threshold, tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,sensitivity, cluster_shape, symbol_list1 = np.zeros(
+                13)
 
             return (
-            clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, LCOC_threshold,
-            tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa)
+                clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh,
+                network_length, anchor_to_cluster, LCOC_threshold, tot_demand_expan,
+                avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,
+                sensitivity, cluster_shape, symbol_list1)
+
+
 
         clusters = anchor_1.zero_to_nan(clusters)
 
@@ -252,8 +258,27 @@ class MainCalculation:
         save_results_normal.write_tiff(clusters_numbered, 'cluster_numbered', self.output_directory)
 
         cluster_numbered_name = 'cluster_numbered_' + save_results_normal.current_time[-8:-3] + '.tif'
+        ######################################
+        #files in the var/temp directory
+        # print(cluster_numbered_name)
+        #
+        # print(self.output_directory)
+        #
+        # all_entries = os.listdir(self.output_directory)
+        # print(all_entries)
+        # # Filter out directories, leaving only files
+        # files = [entry for entry in all_entries if os.path.isfile(os.path.join(directory, entry))]
+        # print(files)
+        #
+        # temporary_directory = os.path.join(self.output_directory, run_start_time)
+        # print(os.listdir(temporary_directory))
 
+
+
+
+        ##########################################
         output_polygon_name = output_shp
+
 
         polygonize.polygonize(cluster_numbered_name, output_directory, output_polygon_name)
 
@@ -267,6 +292,7 @@ class MainCalculation:
         #                                          output_directory, electircity_price_EurpKWh)
 
         # assessment of connection to the nearest free cooling supply sources
+
         cluster_shape = estimated_supply_sizing.supply_sizing(self.COP_DC, self.flh_cooling_days, self.af_dc, self.cf_dc,
                                               self.interest_rate, self.depreciation_dc, output_polygon_name,
                                               output_directory, electircity_price_EurpKWh)
@@ -293,21 +319,19 @@ class MainCalculation:
         save_results_normal.write_tiff(Average_pipe_diameter, output_raster_average_diameter, self.output_directory,
                                        current_time_bool=False)
 
+
         # check if the directory exists
-        if os.path.exists(os.path.join(self.output_directory, run_start_time)):
+        if os.path.exists(os.path.join(self.output_directory + '/' + run_start_time)):
             #delete the directory
-            shutil.rmtree(os.path.join(self.output_directory, run_start_time))
-
-
-
-
-
-
+            shutil.rmtree(os.path.join(self.output_directory + '/' + run_start_time))
 
 
 
         print('#######################################################################################################')
 
         return (
-            clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, LCOC_threshold,
-            tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa, sensitivity,cluster_shape, symbol_list1)
+            clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh,
+            network_length, anchor_to_cluster, LCOC_threshold,tot_demand_expan,
+            avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,
+            sensitivity, cluster_shape, symbol_list1)
+

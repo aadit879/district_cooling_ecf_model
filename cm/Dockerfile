@@ -7,6 +7,8 @@ RUN mkdir -p /data
 
 # Install required python modules
 COPY ./requirements.txt /cm/
+RUN apt-get update && apt-get install -y python3-dev
+
 RUN pip3 install -r /cm/requirements.txt
 
 # Copy app source code

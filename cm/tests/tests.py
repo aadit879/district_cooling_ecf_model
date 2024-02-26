@@ -32,9 +32,9 @@ class TestAPI(unittest.TestCase):
         int_raster_gfa_tot = './tests/data/gfa_tot_curr_density_lau2.tif'
         int_raster_gfa_non_res = './tests/data/gfa_nonres_curr_density_lau2.tif'
         int_raster_cdm = './tests/data/Vienna_cool_tot_curr_density_lau2.tif'
-        save_path1 = UPLOAD_DIRECTORY + './gfa_tot_curr_density_lau2.tif'
-        save_path2 = UPLOAD_DIRECTORY + "./gfa_nonres_curr_density_lau2.tif"
-        save_path3 = UPLOAD_DIRECTORY + "./Vienna_cool_tot_curr_density_lau2.tif"
+        save_path1 = UPLOAD_DIRECTORY + '/gfa_tot_curr_density_lau2.tif'
+        save_path2 = UPLOAD_DIRECTORY + "/gfa_nonres_curr_density_lau2.tif"
+        save_path3 = UPLOAD_DIRECTORY + "/Vienna_cool_tot_curr_density_lau2.tif"
 
 
         copyfile(int_raster_gfa_tot, save_path1)

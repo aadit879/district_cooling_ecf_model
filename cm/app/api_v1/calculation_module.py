@@ -46,7 +46,10 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     else:
         print("'depreciation_dc' not found in inputs_parameter_selection")
 
-    depreciation_ac = int(inputs_parameter_selection['depreciation_ac'])
+    if 'depreciation_ac' in inputs_parameter_selection:
+        depreciation_ac = int(inputs_parameter_selection['depreciation_ac'])
+    else:
+        print("'depreciation_ac' not found in inputs_parameter_selection")
 
     # input raster layer
     in_raster_gfa_tot = inputs_raster_selection["gross_floor_area"]

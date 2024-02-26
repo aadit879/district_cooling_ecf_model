@@ -41,7 +41,11 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     # af_ind = int(inputs_parameter_selection['af_ind'])
     # cf_ind = int(inputs_parameter_selection['cf_ind'])
     interest_rate = float(inputs_parameter_selection['interest_rate']) / 100
-    depreciation_dc = int(inputs_parameter_selection['depreciation_dc'])
+    if 'depreciation_dc' in inputs_parameter_selection:
+        depreciation_dc = int(inputs_parameter_selection['depreciation_dc'])
+    else:
+        print("'depreciation_dc' not found in inputs_parameter_selection")
+
     depreciation_ac = int(inputs_parameter_selection['depreciation_ac'])
 
     # input raster layer

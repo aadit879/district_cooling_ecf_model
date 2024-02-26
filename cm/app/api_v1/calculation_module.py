@@ -34,7 +34,10 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     COP_DC = float(inputs_parameter_selection['COP_DC'])
     delta_T_dc = int(inputs_parameter_selection['delta_T_dc'])
     # avg_fluid_velocity_mperS = int(inputs_parameter_selection['avg_fluid_velocity_mperS'])
-    ind_tec_SEER = float(inputs_parameter_selection['ind_tec_SEER'])
+    if 'ind_tec_SEER' in inputs_parameter_selection:
+        ind_tec_SEER = float(inputs_parameter_selection['ind_tec_SEER'])
+    else:
+        print("'ind_tec_SEER' not found in inputs_parameter_selection")
     # af_ind = int(inputs_parameter_selection['af_ind'])
     # cf_ind = int(inputs_parameter_selection['cf_ind'])
     interest_rate = float(inputs_parameter_selection['interest_rate']) / 100

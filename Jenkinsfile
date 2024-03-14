@@ -50,7 +50,7 @@ pipeline {
     }
 
     post {
-        success {
+        success { 
             echo "SUCCESS" 
             // always {
             //     emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'

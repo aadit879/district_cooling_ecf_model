@@ -46,7 +46,7 @@ INPUTS_CALCULATION_MODULE = [
      'input_parameter_name': 'COP_DC',
      'input_value': '4.89',
      'input_priority': 0,
-     'input_unit': '%',
+     'input_unit': '',
      'input_min': 0,
      'input_max': 100, 'cm_id': CM_ID  # Do no change this value
      },
@@ -56,7 +56,7 @@ INPUTS_CALCULATION_MODULE = [
      'input_parameter_name': 'delta_T_dc',
      'input_value': '10',
      'input_priority': 0,
-     'input_unit': '%',
+     'input_unit': '°C',
      'input_min': 10,
      'input_max': 100, 'cm_id': CM_ID  # Do no change this value
      },
@@ -66,7 +66,7 @@ INPUTS_CALCULATION_MODULE = [
      'input_parameter_name': 'idnd_tec_SEER',
      'input_value': '3.6',
      'input_priority': 0,
-     'input_unit': '%',
+     'input_unit': '',
      'input_min': 0,
      'input_max': 100, 'cm_id': CM_ID  # Do no change this value
      },

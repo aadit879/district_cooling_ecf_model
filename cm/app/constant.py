@@ -63,7 +63,7 @@ INPUTS_CALCULATION_MODULE = [
 
     {'input_name': 'COP Individual Cooling Supply Technology',
      'input_type': 'input',
-     'input_parameter_name': 'idnd_tec_SEER',
+     'input_parameter_name': 'ind_tec_SEER',
      'input_value': '3.6',
      'input_priority': 0,
      'input_unit': '',
@@ -83,8 +83,18 @@ INPUTS_CALCULATION_MODULE = [
 
     {'input_name': 'Depreciation Time District Cooling',
      'input_type': 'input',
-     'input_parameter_name': 'decpreciation_dc',
+     'input_parameter_name': 'depreciation_dc',
      'input_value': '25',
+     'input_priority': 1,
+     'input_unit': 'years',
+     'input_min': 0,
+     'input_max': 100, 'cm_id': CM_ID  # Do no change this value
+     },
+
+     {'input_name': 'Depreciation Time District Cooling AC',
+     'input_type': 'input',
+     'input_parameter_name': 'depreciation_ac',
+     'input_value': '15',
      'input_priority': 1,
      'input_unit': 'years',
      'input_min': 0,
@@ -93,7 +103,7 @@ INPUTS_CALCULATION_MODULE = [
 
     {'input_name': 'Depreciation Time Individual Cooling',
      'input_type': 'input',
-     'input_parameter_name': 'decpreciation_ind',
+     'input_parameter_name': 'depreciation_ind',
      'input_value': '15',
      'input_priority': 1,
      'input_unit': 'years',

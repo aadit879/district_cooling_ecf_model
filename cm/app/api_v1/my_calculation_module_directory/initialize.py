@@ -284,7 +284,7 @@ class Parameters:
         # print('Total Investment: € {}'.format(np.round(grid_investment_costs_anchors.sum())))
         # in case when the expansion is zero
         print(
-            'Total Investment for grid (max Possible-if only all anchors are converted to individual DC grids): € {}'.format(
+            'Total Investment for grid (max Possible-if only all anchors are converted to individual DC grids): Euro {}'.format(
                 np.round(grid_investment_costs_anchors.sum())))
         print(
             '############################################################################################################')

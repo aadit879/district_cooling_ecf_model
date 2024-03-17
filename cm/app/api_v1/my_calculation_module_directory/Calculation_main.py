@@ -57,7 +57,7 @@ class MainCalculation:
                                                               self.grid_investment_costs_Eur,
                                                               self.non_ind_areas_mwh)  ## both anchors and neighbours
 
-        save_results_normal.write_tiff(levl_dist_grid_cost_per_mwh, 'levl_dist_grid_cost_per_mwh',
+        save_results_normal.write_tiff(levl_dist_grid_cost_per_mwh,  self.gt, 'levl_dist_grid_cost_per_mwh',
                                        self.output_directory)
 
         ## final outputs
@@ -80,7 +80,7 @@ class MainCalculation:
         for prim_name in files_save_list:
             file_name = prim_name + '_' + run_start_time[-8:-3] + '.tif'
             if not os.path.exists(output_directory + file_name):
-                save_results_normal.write_tiff(vars()[prim_name], prim_name, self.output_directory)
+                save_results_normal.write_tiff(vars()[prim_name], self.gt, prim_name, self.output_directory)
         #######################################################################################################################
         # LCOC_threshold = changing_parameter
         ## clustering based on the identified in samples
@@ -161,7 +161,7 @@ class MainCalculation:
         #                                    'grid_investment_unit_costs_Eurperm', changing_parameter,
         #                                    self.output_directory)
 
-        save_results_with_param.write_tiff(clusters, 'cluster_default', changing_parameter, self.output_directory)
+        save_results_with_param.write_tiff(clusters, self.gt, 'cluster_default', changing_parameter, self.output_directory)
         anchor_df = anchor_1.zero_to_nan(anchor_df)
         # save_results_with_param.write_tiff(anchor_df, 'potential_anchors_default', changing_parameter,
         #                                    self.output_directory)
@@ -172,7 +172,7 @@ class MainCalculation:
         # Average_levl_dist_grid_cost_per_mwh = levl_dist_grid_cost_per_mwh / clusters * clusters  # both anchors and neighbours
         Average_levl_dist_grid_cost_per_mwh = np.where(cluster_mask, levl_dist_grid_cost_per_mwh, 0)
         Average_levl_dist_grid_cost_per_mwh[np.isnan(Average_levl_dist_grid_cost_per_mwh)] = 0
-        save_results_with_param.write_tiff(Average_levl_dist_grid_cost_per_mwh, 'Average_levl_dist_grid_cost_per_mwh',
+        save_results_with_param.write_tiff(Average_levl_dist_grid_cost_per_mwh, self.gt, 'Average_levl_dist_grid_cost_per_mwh',
                                            changing_parameter, self.output_directory)
 
         # Average_pipe_diameter = self.diameter_mm / clusters * clusters  # both anchors and neighbours
@@ -191,7 +191,7 @@ class MainCalculation:
         # LCOC_ind_clusters = LCOC_ind_cap_op / clusters * clusters  ## LCOC of individual system (AC) for anchors + neighbours
         LCOC_ind_clusters = np.where(cluster_mask, LCOC_ind_cap_op, 0)
         LCOC_ind_clusters[np.isnan(LCOC_ind_clusters)] = 0
-        save_results_with_param.write_tiff(LCOC_ind_clusters, 'LCOC_ind_clusters', changing_parameter,
+        save_results_with_param.write_tiff(LCOC_ind_clusters, self.gt, 'LCOC_ind_clusters', changing_parameter,
                                            self.output_directory)
         avg_LCOC_ind_clusters = round(LCOC_ind_clusters[LCOC_ind_clusters != 0].mean(), 2)
 
@@ -199,13 +199,13 @@ class MainCalculation:
         # network_length = self.pipe_length / clusters * clusters
         network_length = np.where(cluster_mask, self.pipe_length, 0)
         network_length[np.isnan(network_length)] = 0
-        save_results_with_param.write_tiff(network_length, 'network_length', changing_parameter, self.output_directory)
+        save_results_with_param.write_tiff(network_length, self.gt, 'network_length', changing_parameter, self.output_directory)
 
         #######################################################################################################################
         # anchor_to_cluster = anchor_df / clusters * clusters
         anchor_to_cluster = np.where(cluster_mask, anchor_df, 0)
         anchor_to_cluster = anchor_1.zero_to_nan(anchor_to_cluster)
-        save_results_with_param.write_tiff(anchor_to_cluster, 'anchor_to_cluster', changing_parameter,
+        save_results_with_param.write_tiff(anchor_to_cluster, self.gt, 'anchor_to_cluster', changing_parameter,
                                            self.output_directory)
 
         anchor_to_cluster[np.isnan(anchor_to_cluster)] = 0
@@ -259,7 +259,7 @@ class MainCalculation:
         ##############################################################################################################
         # save_results_normal.write_tiff(cluster_mask, 'cluster_mask', CM.output_directory)
 
-        save_results_normal.write_tiff(clusters_numbered, 'cluster_numbered', self.output_directory)
+        save_results_normal.write_tiff(clusters_numbered, self.gt, 'cluster_numbered', self.output_directory)
 
         cluster_numbered_name = 'cluster_numbered_' + save_results_normal.current_time[-8:-3] + '.tif'
         ######################################
@@ -307,20 +307,20 @@ class MainCalculation:
         # all_plots.plotter()
 
         demand_covered = np.where(cluster_mask, self.aued_mwh, 0)
-        save_results_normal.write_tiff(demand_covered, output_raster_demand_covered, self.output_directory,
+        save_results_normal.write_tiff(demand_covered, self.gt, output_raster_demand_covered, self.output_directory,
                                        current_time_bool = False)
 
         levl_grid_cost = np.where(cluster_mask, Average_levl_dist_grid_cost_per_mwh, 0)
-        save_results_normal.write_tiff(levl_grid_cost, output_raster_levl_grid_cost, self.output_directory,
+        save_results_normal.write_tiff(levl_grid_cost, self.gt, output_raster_levl_grid_cost, self.output_directory,
                                        current_time_bool = False)
 
-        save_results_normal.write_tiff(network_length, output_raster_network_length,
+        save_results_normal.write_tiff(network_length, self.gt, output_raster_network_length,
                                            self.output_directory,current_time_bool = False)
 
-        save_results_normal.write_tiff(Total_grid_investment, output_raster_grid_investment_cost, self.output_directory,
+        save_results_normal.write_tiff(Total_grid_investment, self.gt, output_raster_grid_investment_cost, self.output_directory,
                                         current_time_bool = False)
 
-        save_results_normal.write_tiff(Average_pipe_diameter, output_raster_average_diameter, self.output_directory,
+        save_results_normal.write_tiff(Average_pipe_diameter, self.gt, output_raster_average_diameter, self.output_directory,
                                        current_time_bool=False)
 
 

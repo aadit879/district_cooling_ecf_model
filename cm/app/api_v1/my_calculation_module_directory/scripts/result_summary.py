@@ -24,7 +24,7 @@ def print_summary(clusters, anchor_points_count, potential_demand_MWh, cluster_m
     demand_met_by_expansion[np.isnan(demand_met_by_expansion)] = 0
     symbol_list1 = polygonize.symbol_list_creation(demand_met_by_expansion)
 
-    save_results_with_param.write_tiff(demand_met_by_expansion, 'Demand_met_by_expansion',
+    save_results_with_param.write_tiff(demand_met_by_expansion, self.gt, 'Demand_met_by_expansion',
                                        changing_parameter ,self.output_directory)
     tot_demand_expan = round(demand_met_by_expansion.sum(), 2)
     per_demand_expan = round(demand_met_by_expansion.sum() / self.aued_mwh.sum() * 100, 2)
@@ -67,13 +67,13 @@ def print_summary(clusters, anchor_points_count, potential_demand_MWh, cluster_m
     total_investment_grid[np.isnan(total_investment_grid)] = 0
     tot_inv_grid = round(total_investment_grid.sum(), 2)
     print('Total investment on grid (Euros): ' + str(tot_inv_grid))
-    save_results_with_param.write_tiff(total_investment_grid, 'total_investment_grid',
+    save_results_with_param.write_tiff(total_investment_grid, self.gt, 'total_investment_grid',
                                        changing_parameter ,self.output_directory)
 
     # cooling_gfa = self.gfa_m2 / clusters * clusters
     cooling_gfa = np.where(cluster_mask, self.gfa_m2, 0)
     cooling_gfa[np.isnan(cooling_gfa)] = 0
-    save_results_with_param.write_tiff(cooling_gfa, 'cooling_gfa', changing_parameter,
+    save_results_with_param.write_tiff(cooling_gfa, self.gt, 'cooling_gfa', changing_parameter,
                                        self.output_directory)
     tot_gfa = round(cooling_gfa.sum(), 2)
     print('Total covered cooling GFA (m2): ' + str(tot_gfa))

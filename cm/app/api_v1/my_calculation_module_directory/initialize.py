@@ -23,7 +23,9 @@ class Parameters:
 
         self.gfa_m2 = read_inputs.read_raster2(int_raster_gfa_tot)[3]
         self.gfa_nonres_m2 = read_inputs.read_raster2(int_raster_gfa_non_res)[3]
-        self.tued_mwh = read_inputs.read_raster2(int_raster_cdm)[3]
+        demand_rasters = read_inputs.read_raster2(int_raster_cdm)
+        self.tued_mwh = demand_rasters[3]
+        self.gt = demand_rasters[0]
 
         self.output_directory = output_directory
 
@@ -101,7 +103,7 @@ class Parameters:
         self.cap_op = self.aued_mwh - self.individual_supplied  # non-supplied areas where both capital and operational expenditure are required
 
         # save_results_normal.write_tiff(self.individual_supplied, 'individual_supplied_xxx')
-        save_results_normal.write_tiff(self.aued_mwh, 'aued_mwh',self.output_directory)  # nactual useful energy demand
+        save_results_normal.write_tiff(self.aued_mwh, self.gt, 'aued_mwh',self.output_directory)  # nactual useful energy demand
 
         return self.individual_supplied, self.cap_op
 
@@ -140,7 +142,7 @@ class Parameters:
 
         # TODO : Also need to add service pipe after confirming numbers
         self.total_pipe_length_pr_m = pipe_length_distribution
-        save_results_normal.write_tiff(self.total_pipe_length_pr_m, 'total_pipe_length_pr_m',self.output_directory)
+        save_results_normal.write_tiff(self.total_pipe_length_pr_m, self.gt, 'total_pipe_length_pr_m',self.output_directory)
 
         return self.total_pipe_length_pr_m
 
@@ -158,7 +160,7 @@ class Parameters:
         ##*** for all cells
         # estimate peak with TUED
         peak_demand_MW = anchor_1.peak_estimate(peak_estimate_approach, self.aued_mwh, self.flh_cooling_days)[0]
-        save_results_normal.write_tiff(peak_demand_MW, 'peak_demand_MW',self.output_directory)
+        save_results_normal.write_tiff(peak_demand_MW, self.gt, 'peak_demand_MW',self.output_directory)
 
         non_ind_areas_mwh = self.cap_op.copy()  # cap_op is already in terms of AUED
 
@@ -167,20 +169,20 @@ class Parameters:
         self.linear_demand_density = np.zeros_like(non_ind_areas_mwh)
         self.linear_demand_density[cells] = non_ind_areas_mwh[cells] / self.pipe_length[
             cells]  # pipe length us based on total GFA
-        save_results_normal.write_tiff(self.linear_demand_density, 'linear_demand_density',
+        save_results_normal.write_tiff(self.linear_demand_density, self.gt, 'linear_demand_density',
                                        self.output_directory)
 
         dia_meter_estimate = anchor_1.estimate_diameter(self.delta_T_dc, self.avg_fluid_velocity_mperS, peak_demand_MW,
                                                         self.linear_demand_density, scaling=True)
         diameter_mm = dia_meter_estimate[0]
-        save_results_normal.write_tiff(diameter_mm, 'diameter_mm',self.output_directory)
+        save_results_normal.write_tiff(diameter_mm, self.gt, 'diameter_mm',self.output_directory)
 
         volume_flow_rate_m3perS = dia_meter_estimate[1]
-        save_results_normal.write_tiff(volume_flow_rate_m3perS, 'volume_flow_rate_m3perS',self.output_directory)
+        save_results_normal.write_tiff(volume_flow_rate_m3perS, self.gt, 'volume_flow_rate_m3perS',self.output_directory)
 
         # grid investment are calculated for all cells # costs are not annualized
         grid_investment_costs_Eur = anchor_1.dc_cost_calculation(diameter_mm, self.pipe_length)[0]
-        save_results_normal.write_tiff(grid_investment_costs_Eur, 'grid_investment_costs_Eur',
+        save_results_normal.write_tiff(grid_investment_costs_Eur, self.gt, 'grid_investment_costs_Eur',
                                        self.output_directory)
         grid_investment_unit_costs_Eurperm = anchor_1.dc_cost_calculation(diameter_mm, self.pipe_length)[1]
 

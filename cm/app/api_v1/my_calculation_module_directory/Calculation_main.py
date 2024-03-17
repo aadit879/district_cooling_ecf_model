@@ -126,8 +126,12 @@ class MainCalculation:
                 'No clusters identified for electricity price of ' + str(electircity_price_EurpKWh * 1000) + ' Eur/MWh')
 
             clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh, network_length, anchor_to_cluster, \
-            LCOC_threshold, tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,sensitivity, cluster_shape, symbol_list1 = np.zeros(
-                13)
+            LCOC_threshold, tot_demand_expan, avg_LCOC_ind_clusters, tot_inv_grid, tot_gfa,cluster_shape, symbol_list1 = np.zeros(
+                12)
+
+            sensitivity = pd.DataFrame()
+            sensitivity.loc[0, 'Theoretical Cooling Demand (TWh)'] = self.tued_mwh.sum()
+            sensitivity.loc[0,  'Actual Cooling Demand (TWh)'] = self.aued_mwh.sum()
 
             return (
                 clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh,

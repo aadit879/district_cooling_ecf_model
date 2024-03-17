@@ -37,9 +37,14 @@ def DC_identification(electricity_prices, flh_cooling_days, COP_DC, delta_T_dc, 
     grid_investment_unit_costs_Eurperm = CM.grid_investment_unit_costs_Eurperm,
     grid_investment_costs_Eur = CM.grid_investment_costs_Eur
 
-    theoretical_demand =summary_df.loc[0,'Theoretical Cooling Demand (TWh)']
-    actual_demand = summary_df.loc[0,'Actual Cooling Demand (TWh)']
-    dc_coverage = summary_df.loc[0,'DC Covered Demand (TWh)']
+    if 'DC Covered Demand (TWh)' in summary_df.columns:
+        theoretical_demand = summary_df.loc[0, 'Theoretical Cooling Demand (TWh)']
+        actual_demand = summary_df.loc[0, 'Actual Cooling Demand (TWh)']
+        dc_coverage = summary_df.loc[0, 'DC Covered Demand (TWh)']
+    else:
+        theoretical_demand = summary_df.loc[0, 'Theoretical Cooling Demand (TWh)']
+        actual_demand = summary_df.loc[0, 'Actual Cooling Demand (TWh)']
+        dc_coverage = 0
 
     graphics = [
         # {'type': 'bar',
@@ -57,7 +62,7 @@ def DC_identification(electricity_prices, flh_cooling_days, COP_DC, delta_T_dc, 
         {'type': 'bar',
          'xlabel': "",
          'ylabel': 'Potential (GWh/year)',
-         "data": {"labels": ['Annual Theoretical Cooling Demand', 'Annual Actual Cooling Demand','DC coverage potential'],
+         "data": {"labels": ['Theo. Cooling Demand p.a.', 'Act. Cooling Demand p.a','DC coverage potential'],
                            "datasets": [{
                                     "label": "DC Potential Assessment",
                                     "backgroundColor": ["#fe7c60", "#3e95cd",'#00FF00'],

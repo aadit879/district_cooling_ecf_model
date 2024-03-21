@@ -119,11 +119,11 @@ SIGNATURE = {
     "authorized_scale":["LAU 2","Hectare"],
     "cm_name": CM_NAME,
     "wiki_url": "https://wiki.hotmaps.hevs.ch/en/CM-Scale-heat-and-cool-density-maps", #TODO AM: Needs to be updated
-    "layers_needed": ["heat_tot_curr_density_tif","gfa_tot_curr_density_tif","gfa_nonres_curr_density_tif"], # AM: nonres to be selected by default (for now)
+    "layers_needed": ["cool_tot_curr_density_tif","gfa_tot_curr_density_tif","gfa_nonres_curr_density_tif"], # AM: nonres to be selected by default (for now)
     "type_layer_needed": [
-        {"type": "heat", "description": "Select the cold demand density layer"},#TODO AM: What is the 'type' for cooling?
-        {"type": "gross_floor_area", "description": "Select the gross floor area density layer"}
-        #{"type": "gross_floor_area", "description": "Select the gross floor area density layer"}
+        {"type": "cooling", "description": "Select the cold demand density layer"},
+        {"type": "gross_floor_area", "description": "Select the gross floor area density layer"},
+        {"type": "gfa_nonres_curr_density", "description": "Select the gross floor area density layer non-residential"}
     ],
     "type_vectors_needed": [], ### AM: to be added; most likely convert the vector files to raster
     "cm_url": "Do not add something",

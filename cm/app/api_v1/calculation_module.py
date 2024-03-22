@@ -22,7 +22,8 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     '''
        # AM: all input parameters defined in the constant.py file are to be called here
        '''
-
+    print(inputs_raster_selection.keys())
+    print(inputs_raster_selection.values())
     # input parameter
     # per_actual_demand = float(inputs_parameter_selection['per_actual_demand'])
     electricity_prices = float(inputs_parameter_selection['electricity_prices']) / 1000
@@ -56,7 +57,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     in_raster_gfa_tot = inputs_raster_selection["gross_floor_area"]
     in_raster_gfa_non_res = inputs_raster_selection[
         "gross_floor_area"]  # TODO: AM: is this also correct for nonresidential
-    in_raster_cdm = inputs_raster_selection["heat"]  # TODO : AM: check the type; should match constant.py
+    in_raster_cdm = inputs_raster_selection["cool"]  # TODO : AM: check the type; should match constant.py
 
     # generate the output raster file
 

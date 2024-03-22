@@ -121,7 +121,7 @@ SIGNATURE = {
     "wiki_url": "https://wiki.hotmaps.hevs.ch/en/CM-Scale-heat-and-cool-density-maps", #TODO AM: Needs to be updated
     "layers_needed": ["cool_tot_curr_density_tif","gfa_tot_curr_density_tif","gfa_nonres_curr_density_tif"], # AM: nonres to be selected by default (for now)
     "type_layer_needed": [
-        {"type": "heat", "description": "Select the cold demand density layer"},
+        {"type": "cool", "description": "Select the cold demand density layer"},
         {"type": "gross_floor_area", "description": "Select the gross floor area density layer"},
         {"type": "gfa_nonres_curr_density", "description": "Select the gross floor area density layer non-residential"}
     ],

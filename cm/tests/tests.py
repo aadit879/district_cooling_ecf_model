@@ -45,7 +45,7 @@ class TestAPI(unittest.TestCase):
         inputs_parameter_selection = {}
         inputs_raster_selection["gross_floor_area"]  = save_path1
         inputs_raster_selection["gross_floor_area"] = save_path2
-        inputs_raster_selection["cool"] = save_path3 # TODO: AM does this category changes to cold?
+        inputs_raster_selection["cooling"] = save_path3 # TODO: AM does this category changes to cold?
 
 
         inputs_parameter_selection['electricity_prices'] = "0.08"

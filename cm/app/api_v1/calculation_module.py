@@ -57,7 +57,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     in_raster_gfa_tot = inputs_raster_selection["gross_floor_area"]
     in_raster_gfa_non_res = inputs_raster_selection[
         "gross_floor_area"]  # TODO: AM: is this also correct for nonresidential
-    in_raster_cdm = inputs_raster_selection["cool"]  # TODO : AM: check the type; should match constant.py
+    in_raster_cdm = inputs_raster_selection["cooling"]  # TODO : AM: check the type; should match constant.py
 
     # generate the output raster file
 

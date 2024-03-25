@@ -22,8 +22,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     '''
        # AM: all input parameters defined in the constant.py file are to be called here
        '''
-    print(inputs_raster_selection.keys())
-    print(inputs_raster_selection.values())
+
     # input parameter
     # per_actual_demand = float(inputs_parameter_selection['per_actual_demand'])
     electricity_prices = float(inputs_parameter_selection['electricity_prices']) / 1000
@@ -125,20 +124,20 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
                             "value": str(float(symbol_vals_str[4]) + step),
                             "label": ">" + symbol_vals_str[4] + " GWh"}]
              },
-            {"name": "Heat density map in potential DH areas - raster", "path": output_raster_levl_grid_cost,
-             "type": "heat"
+            {"name": "Levelized cost of grid in DC areas - raster", "path": output_raster_levl_grid_cost,
+             "type": "cooling"
              },
-            {"name": "Heat density map in potential DH areas - raster",
+            {"name": " Network length in DC areas -raster",
              "path": output_raster_network_length,
-             "type": "heat"
+             "type": "cooling"
              },
-            {"name": "Heat density map in potential DH areas - raster",
+            {"name": "Grid investment costs in  in DC areas - raster",
              "path": output_raster_grid_investment_cost,
-             "type": "heat"
+             "type": "cooling"
              },
-            {"name": "Heat density map in potential DH areas - raster",
+            {"name": "Average pipe daimeter in DC areas - raster",
              "path": output_raster_average_diameter,
-             "type": "heat"
+             "type": "cooling"
              }
             ]
 

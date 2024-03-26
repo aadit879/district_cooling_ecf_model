@@ -80,6 +80,10 @@ class Parameters:
 
     def working_area_identification(self):
 
+        print('Total Cooling Demand:', np.sum(self.tued_mwh))
+        print('Total GFA:', np.sum(self.gfa_m2))
+        print('Total Non-Res GFA:', np.sum(self.gfa_nonres_m2))
+
         ## filter out high residential areas
         self.non_res_ratio = np.zeros_like(self.gfa_m2)
         cells = np.where(self.gfa_m2 != 0)

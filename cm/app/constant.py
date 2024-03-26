@@ -24,7 +24,7 @@ INPUTS_CALCULATION_MODULE = [
     {'input_name': 'Average Electricity Price',
      'input_type': 'input',
      'input_parameter_name': 'electricity_prices',
-     'input_value': '100',
+     'input_value': '150',
      'input_priority': 0,
      'input_unit': 'Euro/MWh',
      'input_min': 0,

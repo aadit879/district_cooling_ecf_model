@@ -208,7 +208,7 @@ def cluster_parameters_allocation(changing_parameter,shape_file_name,run_start_t
     vector.loc[:,'spc_dem'] = vector.Tot_dem / vector.GFA_m2 ## average specific demand per cluster
 
     vector.loc[:,'Area'] = vector.geometry.area
-    vector = vector[vector.Area > 30000]
+    #vector = vector[vector.Area > 30000]
 
     vector.drop(columns=['FID','Area'], inplace=True)
 

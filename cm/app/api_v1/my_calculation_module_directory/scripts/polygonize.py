@@ -204,7 +204,7 @@ def cluster_parameters_allocation(changing_parameter,shape_file_name,run_start_t
 
     vector.loc[:,'Inv_gp'] = vector.Inv_g_ann + vector.PumpAnnEur #Total investemnt Euros annualized
     vector.loc[:,'LCOCgrid'] = vector.Inv_gp / vector.Tot_dem ##overall LCOC EUR/MWh
-    vector.loc[:,'Lin_Density'] = vector.Tot_dem / vector.grid_len ## average linear density per cluster
+    vector.loc[:,'LDD'] = vector.Tot_dem / vector.grid_len ## average linear density per cluster
     vector.loc[:,'spc_dem'] = vector.Tot_dem / vector.GFA_m2 ## average specific demand per cluster
 
     vector.loc[:,'Area'] = vector.geometry.area

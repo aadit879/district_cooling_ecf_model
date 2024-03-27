@@ -121,7 +121,7 @@ class MainCalculation:
         # save_results_with_param.write_tiff(anchor_levelized_cost, 'anchor_levelized_cost', changing_parameter,
         #                                    self.output_directory)
 
-        if clusters.max() == 0:
+        if not np.any(clusters > 0):
             print(
                 'No clusters identified for electricity price of ' + str(electircity_price_EurpKWh * 1000) + ' Eur/MWh')
 
@@ -130,8 +130,8 @@ class MainCalculation:
                 12)
 
             sensitivity = pd.DataFrame()
-            sensitivity.loc[0, 'Theoretical Cooling Demand (TWh)'] = self.tued_mwh.sum()
-            sensitivity.loc[0,  'Actual Cooling Demand (TWh)'] = self.aued_mwh.sum()
+            sensitivity.loc[0, 'Theoretical Cooling Demand (TWh)'] = round(self.tued_mwh.sum() / 1000000, 2)
+            sensitivity.loc[0, 'Actual Cooling Demand (TWh)'] = round(self.aued_mwh.sum() / 1000000, 2)
 
             return (
                 clusters, anchor_df, Average_levl_dist_grid_cost_per_mwh,

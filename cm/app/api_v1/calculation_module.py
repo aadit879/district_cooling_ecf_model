@@ -54,8 +54,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
 
     # input raster layer
     in_raster_gfa_tot = inputs_raster_selection["gross_floor_area"]
-    in_raster_gfa_non_res = inputs_raster_selection[
-        "gross_floor_area"]  # TODO: AM: is this also correct for nonresidential
+    in_raster_gfa_non_res = inputs_raster_selection["gfa_nonres_curr_density"]  # TODO: AM: should match constant.py
     in_raster_cdm = inputs_raster_selection["cooling"]  # TODO : AM: check the type; should match constant.py
 
     # generate the output raster file
@@ -101,7 +100,7 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
                             "value": dc_coverage},
                            {"unit": "%",
                             "name": "Potential share of district cooling from total actual demand in selected zone",
-                            "value": 100 * round(dc_coverage / theoretical_demand, 4)}
+                            "value": 100 * round(dc_coverage / theoretical_demand, 2)}
                            ]
     result['graphics'] = graphics
 
@@ -156,6 +155,11 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
                            {"red": 166, "green": 54, "blue": 3, "opacity": 0.5,
                             "value": str(float(symbol_vals_str[4]) + step), "label": ">" + symbol_vals_str[4] + " GWh"}]
              }]
+    else:
+        result['indicator'].append({'unit': '-',
+                                    'name': 'District cooling not feasible with these parameters',
+                                    'value': '-'})
+
 
     print('result', result)
     return result

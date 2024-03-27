@@ -10,6 +10,9 @@ COV.start()
 return_code = not unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful()
 
 COV.stop()
+
 COV.report()
+
+
 
 sys.exit(return_code)

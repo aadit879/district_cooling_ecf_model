@@ -47,18 +47,6 @@ def DC_identification(electricity_prices, flh_cooling_days, COP_DC, delta_T_dc, 
         dc_coverage = 0
 
     graphics = [
-        # {'type': 'bar',
-        #  'xlabel': 'DC Area label',
-        #  'ylabel': 'Potential (GWh/year)',
-        #  "data": {"labels": [str(x) for x in range(1, 1+len(DHPot))],
-        #                    "datasets": [{
-        #                             "label": "Potential in coherent areas",
-        #                             "backgroundColor": ["#3e95cd"]*len(DHPot),
-        #                             "data": list(np.around(DHPot,2))
-        #                             }]
-        #             }
-        #         },
-
         {'type': 'bar',
          'xlabel': "",
          'ylabel': 'Potential (GWh/year)',

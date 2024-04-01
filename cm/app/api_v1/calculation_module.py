@@ -92,11 +92,11 @@ def calculation(output_directory, inputs_raster_selection,inputs_parameter_selec
     # raster layer showing the clusters
 
     result['name'] = CM_NAME
-    result['indicator'] = [{"unit": "GWh", "name": "Total theoretical cooling demand in GWh within the selected zone",
+    result['indicator'] = [{"unit": "TWh", "name": "Total theoretical cooling demand in GWh within the selected zone",
                             "value": theoretical_demand},
-                           {"unit": "GWh", "name": "Estimated actual cooling demand in GWh within the selected zone",
+                           {"unit": "TWh", "name": "Estimated actual cooling demand in GWh within the selected zone",
                             "value": actual_demand},
-                           {"unit": "GWh", "name": "DC cooling potential in GWh within the selected zone",
+                           {"unit": "TWh", "name": "DC cooling potential in GWh within the selected zone",
                             "value": dc_coverage},
                            {"unit": "%",
                             "name": "Potential share of district cooling from total actual demand in selected zone",

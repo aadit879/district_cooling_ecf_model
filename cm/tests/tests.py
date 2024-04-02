@@ -48,7 +48,7 @@ class TestAPI(unittest.TestCase):
         inputs_raster_selection["cooling"] = save_path3 # TODO: AM does this category changes to cold?
 
 
-        inputs_parameter_selection['electricity_prices'] = "0.08"
+        inputs_parameter_selection['electricity_prices'] = "10"
         inputs_parameter_selection['flh_cooling_days'] = "60"
         inputs_parameter_selection['COP_DC'] = "4.89"
         inputs_parameter_selection['delta_T_dc'] = "10"

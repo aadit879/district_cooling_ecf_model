@@ -52,6 +52,7 @@ class MainCalculation:
                  output_raster_grid_investment_cost,output_raster_average_diameter, output_shp):
 
         electircity_price_EurpKWh = self.electricity_prices
+        print('Electricity Price: ', electircity_price_EurpKWh)
         ## calculating the grid expansion costs for the distribution grid per MWh for all cells
         levl_dist_grid_cost_per_mwh = anchor_1.Levl_dist_grid(self.interest_rate, self.depreciation_dc,
                                                               self.grid_investment_costs_Eur,
@@ -121,6 +122,10 @@ class MainCalculation:
         # save_results_with_param.write_tiff(anchor_levelized_cost, 'anchor_levelized_cost', changing_parameter,
         #                                    self.output_directory)
 
+        print('Unique elements in cluster:' + str(np.unique(clusters)))
+        print('Total clusters (num):' + str(len(np.unique(clusters_numbered))))
+        print('Total cluster mask cells :' + str(cluster_mask.sum()))
+
         if not np.any(clusters > 0):
             print(
                 'No clusters identified for electricity price of ' + str(electircity_price_EurpKWh * 1000) + ' Eur/MWh')
@@ -140,6 +145,7 @@ class MainCalculation:
                 sensitivity, cluster_shape, symbol_list1)
 
 
+        print('if statment bypassed!!')
 
         clusters = anchor_1.zero_to_nan(clusters)
 
@@ -162,7 +168,9 @@ class MainCalculation:
         #                                    self.output_directory)
 
         save_results_with_param.write_tiff(clusters, self.gt, 'cluster_default', changing_parameter, self.output_directory)
+        print('Anchor_df_sum: ' + str(anchor_df.sum()))
         anchor_df = anchor_1.zero_to_nan(anchor_df)
+        print('Anchor_df_sum: ' + str(anchor_df.sum()))
         # save_results_with_param.write_tiff(anchor_df, 'potential_anchors_default', changing_parameter,
         #                                    self.output_directory)
 
@@ -171,44 +179,67 @@ class MainCalculation:
 
         # Average_levl_dist_grid_cost_per_mwh = levl_dist_grid_cost_per_mwh / clusters * clusters  # both anchors and neighbours
         Average_levl_dist_grid_cost_per_mwh = np.where(cluster_mask, levl_dist_grid_cost_per_mwh, 0)
+        print('Average_levl_dist_grid_cost_per_mwh:' + str(Average_levl_dist_grid_cost_per_mwh.mean()))
         Average_levl_dist_grid_cost_per_mwh[np.isnan(Average_levl_dist_grid_cost_per_mwh)] = 0
+        print('Average_levl_dist_grid_cost_per_mwh:' + str(Average_levl_dist_grid_cost_per_mwh.mean()))
         save_results_with_param.write_tiff(Average_levl_dist_grid_cost_per_mwh, self.gt, 'Average_levl_dist_grid_cost_per_mwh',
                                            changing_parameter, self.output_directory)
 
         # Average_pipe_diameter = self.diameter_mm / clusters * clusters  # both anchors and neighbours
         Average_pipe_diameter = np.where(cluster_mask, self.diameter_mm, 0)
+        print('Max pipe diameter:' + str(Average_pipe_diameter.max()))
+        print('Min pipe diameter:' + str(Average_pipe_diameter.min()))
         Average_pipe_diameter[np.isnan(Average_pipe_diameter)] = 0
+        print('Max pipe diameter:' + str(Average_pipe_diameter.max()))
+        print('Min pipe diameter:' + str(Average_pipe_diameter.min()))
 
         # Total_grid_investment = self.grid_investment_costs_Eur / clusters * clusters  # both anchors and neighbours
         Total_grid_investment = np.where(cluster_mask, self.grid_investment_costs_Eur, 0)
+        print('Total_grid_investment:' + str(Total_grid_investment.sum()))
         Total_grid_investment[np.isnan(Total_grid_investment)] = 0
+        print('Total_grid_investment:' + str(Total_grid_investment.sum()))
 
         # LCOC_ind_anchors = LCOC_capop_anchors / clusters * clusters  ## LCOC of individual system (AC) for anchors selected in the cluster
         LCOC_ind_anchors = np.where(cluster_mask, LCOC_capop_anchors, 0)
+        print('LCOC_ind_anchors:' + str(LCOC_ind_anchors.mean()))
         LCOC_ind_anchors[np.isnan(LCOC_ind_anchors)] = 0
+        print('LCOC_ind_anchors:' + str(LCOC_ind_anchors.mean()))
         avg_LCOC_ind_anchors = round(LCOC_ind_anchors[LCOC_ind_anchors != 0].mean(), 2)
+        print('avg_LCOC_ind_anchors:' + str(avg_LCOC_ind_anchors))
 
         # LCOC_ind_clusters = LCOC_ind_cap_op / clusters * clusters  ## LCOC of individual system (AC) for anchors + neighbours
         LCOC_ind_clusters = np.where(cluster_mask, LCOC_ind_cap_op, 0)
+        print('LCOC_ind_clusters:' + str(LCOC_ind_clusters.mean()))
         LCOC_ind_clusters[np.isnan(LCOC_ind_clusters)] = 0
+        print('LCOC_ind_clusters:' + str(LCOC_ind_clusters.mean()))
         save_results_with_param.write_tiff(LCOC_ind_clusters, self.gt, 'LCOC_ind_clusters', changing_parameter,
                                            self.output_directory)
         avg_LCOC_ind_clusters = round(LCOC_ind_clusters[LCOC_ind_clusters != 0].mean(), 2)
+        print('avg_LCOC_ind_clusters:' + str(avg_LCOC_ind_clusters))
 
         ## network length based on the road
         # network_length = self.pipe_length / clusters * clusters
         network_length = np.where(cluster_mask, self.pipe_length, 0)
+        print('network_length:' + str(network_length.sum()))
+        print('network_length_mean:' + str(network_length.mean()))
         network_length[np.isnan(network_length)] = 0
+        print('network_length:' + str(network_length.sum()))
+        print('network_length_mean:' + str(network_length.mean()))
         save_results_with_param.write_tiff(network_length, self.gt, 'network_length', changing_parameter, self.output_directory)
 
         #######################################################################################################################
         # anchor_to_cluster = anchor_df / clusters * clusters
         anchor_to_cluster = np.where(cluster_mask, anchor_df, 0)
+        print('anchor_to_cluster:' + str(anchor_to_cluster.sum()))
         anchor_to_cluster = anchor_1.zero_to_nan(anchor_to_cluster)
+        print('anchor_to_cluster:' + str(anchor_to_cluster.sum()))
         save_results_with_param.write_tiff(anchor_to_cluster, self.gt, 'anchor_to_cluster', changing_parameter,
                                            self.output_directory)
 
         anchor_to_cluster[np.isnan(anchor_to_cluster)] = 0
+        print('anchor_to_cluster_sum:' + str(anchor_to_cluster.sum()))
+
+
         anchor_points_count = anchor_to_cluster.sum()
         # number of anchors that show actual feasibility for conversion into DC network central points
 

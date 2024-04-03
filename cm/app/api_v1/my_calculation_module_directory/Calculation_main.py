@@ -229,12 +229,15 @@ class MainCalculation:
 
         #######################################################################################################################
         # anchor_to_cluster = anchor_df / clusters * clusters
+        print('###Anchor DF: ' + str(anchor_df.max()))
+        print('###Anchor DF: ' + str(anchor_df.min()))
         anchor_to_cluster = np.where(cluster_mask, anchor_df, 0)
         print('anchor_to_cluster:' + str(anchor_to_cluster.sum()))
         anchor_to_cluster = anchor_1.zero_to_nan(anchor_to_cluster)
         print('anchor_to_cluster:' + str(anchor_to_cluster.sum()))
         save_results_with_param.write_tiff(anchor_to_cluster, self.gt, 'anchor_to_cluster', changing_parameter,
                                            self.output_directory)
+
 
         anchor_to_cluster[np.isnan(anchor_to_cluster)] = 0
         print('anchor_to_cluster_sum:' + str(anchor_to_cluster.sum()))

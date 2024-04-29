@@ -6,7 +6,7 @@
 
 - [Connect a calculation module into the Hotmaps toolbox](#Connect-a-calculation-module-into-the-Hotmaps-toolbox)
 
-- [Retrieve the Hotmaps calculation module fundamentals](#Retrieve-the-Hotmaps-calculation-module-fundamentals)
+- [Retrieve the calculation module fundamentals](#Retrieve-the-Hotmaps-calculation-module-fundamentals)
 
 - [Caclulation module architecture](#Caclulation-module-architecture)
 

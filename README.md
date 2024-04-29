@@ -126,10 +126,10 @@ Create an empty folder on your computer with the same name and go inside the fol
 git pull upstream master
 ```
 
-*If you encounter any issue like GIT conflict please contact CREM.(support@crem.ch)*
+*If you encounter any issue like GIT conflict please contact EASILab.(easilab@hevs.ch)*
 
 
-6. Release a version of your CM
+1. Release a version of your CM
 
 
   After testing your calculation module you can update the release branch (master branch)
@@ -663,7 +663,7 @@ Before writing any line of code test the existing one, run the tests
 If the test ran without any error, `constant.py` must be changed in order to
   - give a name to your CM
   - build the frontend user interface of the CM
-  - assign a unique CM_ID (please contact the Research Center of Martigny (CREM))
+  - assign a unique CM_ID (please contact EASILab (easilab@hevs.ch))
   - modify the SIGNATURE to describe your CM
   - etc
 

@@ -1,14 +1,14 @@
-# guideline for developing a calculation module for the Hotmaps toolbox
+# Guideline for developing a calculation module for the toolbox
 
 ## Table of contents
 
 - [Introduction](#Introduction)
 
-- [Connect a calculation module into the Hotmaps toolbox](#Connect-a-calculation-module-into-the-Hotmaps-toolbox)
+- [Connect a calculation module into the toolbox](#Connect-a-calculation-module-into-the-toolbox)
 
-- [Retrieve the calculation module fundamentals](#Retrieve-the-Hotmaps-calculation-module-fundamentals)
+- [Retrieve the calculation module fundamentals](#Retrieve-the-calculation-module-fundamentals)
 
-- [Caclulation module architecture](#Caclulation-module-architecture)
+- [Calculation module architecture](#Calculation-module-architecture)
 
 - [Handling calculation module inputs](#Handling-calculation-module-inputs)
 
@@ -16,7 +16,7 @@
 
 - [Calculation module development in a local environment](#CM-development-guidelines-in-a-local-environment)
 
-- [ Adding layers for CM ](#Adding-layers-for-CM)
+- [Adding layers for CM](#Adding-layers-for-CM)
 
 
 
@@ -29,10 +29,10 @@
 
 **Calculation module definition**
 
-A calulation Module (CM) is a plugin for Hotmaps toolbox which is able to extend toolbox functionality.
+A calculation Module (CM) is a plugin for the toolbox which is able to extend toolbox functionality.
 
 
-## Connect a calculation module into the Hotmaps toolbox
+## Connect a calculation module into the toolbox
 
 
 ```
@@ -55,7 +55,7 @@ _______________________________
 ```
 
 
-The CM can run on its own, but when it is on the same network as the Hotmaps toolbox API (HTAPI), it will be automatically detected.
+The CM can run on its own, but when it is on the same network as the toolbox API (HTAPI), it will be automatically detected.
 Using Celery queue to register, HTAPI contains heartbeat that will check at anytime if a calculation is running or not. In other words, the achitecture is working in realtime and detects new CMs.
 
 
@@ -65,9 +65,9 @@ Using Celery queue to register, HTAPI contains heartbeat that will check at anyt
 
 
 
-##Retrieve the Hotmaps calculation module fundamentals
+## Retrieve the calculation module fundamentals
 
-The architecture of the Hotmaps repositories is illustrated below. Each CM inherits from the base calculation module (cm base; upstream):
+The architecture of the repositories is illustrated below. Each CM inherits from the base calculation module (cm base; upstream):
 
 ```
 GIT Repository architecture:
@@ -88,11 +88,11 @@ GIT Repository architecture:
 ```
 
 
-In order to create a Hotmaps repository, follow the belowing steps.
+In order to create a repository, follow the belowing steps.
 
 
 
-1. Create a repository on your Hotmaps GitHub account and assign a name to it, e.g. **name_of_my_module**.\
+1. Create a repository on your GitHub account and assign a name to it, e.g. **name_of_my_module**.\
 Do **NOT** initialize the reposiany with a license nor a readme file.
 Create an empty folder on your computer with the same name and go inside the folder.\
 
@@ -100,8 +100,8 @@ Create an empty folder on your computer with the same name and go inside the fol
 
 ``` bash
   git init
-  git remote add origin https://github.com/YourUsername/name_of_my_module.git # add a remote link to your repository
-  git remote add upstream https://github.com/HotMaps/base_calculation_module.git # add a remote link to the base calculation module (BCM)
+  git remote add origin < your_repository_URL > # add a remote link to your repository
+  git remote add upstream https://vlhtuleap.hevs.ch/plugins/git/git-eranet/base_calculation_module.git # add a remote link to the base calculation module (BCM)
   git pull upstream master
   git add .
   git commit -m "first commit" # update changes
@@ -126,7 +126,7 @@ Create an empty folder on your computer with the same name and go inside the fol
 git pull upstream master
 ```
 
-*If you encounter any issue like GIT conflict please contact EASILab.(easilab@hevs.ch)*
+*If you encounter any issue like GIT conflict please contact EASILab (support@easilabdev.ch).*
 
 
 1. Release a version of your CM
@@ -147,10 +147,10 @@ git tag -a number_of_the_version
 
 *******************************   
 
-## Caclulation module architecture:
+## Calculation module architecture:
 
 
-The architecture of a sample Hotmaps CM is illustrated below:
+The architecture of a sample CM is illustrated below:
 
 
 
@@ -220,7 +220,7 @@ The architecture of a sample Hotmaps CM is illustrated below:
 ## Handling calculation module inputs
 
 
-In this section, the management of different input types accepted by Hotmaps base calculation module is explained.
+In this section, the management of different input types accepted by base calculation module is explained.
 
 #### SIGNATURE definition
 In order to identify each calculation module, the system need a SIGNATURE that CM provider should add.
@@ -663,7 +663,7 @@ Before writing any line of code test the existing one, run the tests
 If the test ran without any error, `constant.py` must be changed in order to
   - give a name to your CM
   - build the frontend user interface of the CM
-  - assign a unique CM_ID (please contact EASILab (easilab@hevs.ch))
+  - assign a unique CM_ID (please contact EASILab (support@easilabdev.ch))
   - modify the SIGNATURE to describe your CM
   - etc
 
@@ -683,12 +683,12 @@ In the root directory:
 
 ## Adding layers for CM 
 
-1. Create a repository in Hotmaps GitLab (To-Do: also provide the link to the Hotmaps gitlab) with the name of the layer in lower case
+1. Create a repository in GitLab (To-Do: also provide the link to the gitlab) with the name of the layer in lower case
  *layer_name/data/layer_name.tif*, the repository name must be the same as the layer
 
-2. this data must be uploaded in the hotmaps server in the folowing place *var/hotmaps/repositories/layer_name/data/layer_name.tif*
-this is usally done by the data integration when a new layer in added to the Gitlab repository of Hotmaps
-3. this data must be known by frontend by adding the layer in the file layer-interation.data.ts (https://github.com/HotMaps/Hotmaps-toolbox-client/blob/master/src/app/features/layers-interaction/layers-interaction.data.ts)
+2. this data must be uploaded in the server in the following place *var/hotmaps/repositories/layer_name/data/layer_name.tif*
+this is usually done by the data integration when a new layer in added to the Gitlab repository
+3. this data must be known by frontend by adding the layer in the file layer-interation.data.ts
 
 
 <code><ins>**[To Top](#table-of-contents)**</ins></code>

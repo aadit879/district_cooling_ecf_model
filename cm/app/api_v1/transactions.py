@@ -51,7 +51,7 @@ def register():
     #""" register the Calculation module (CM)to the main web services (MWS)-
     #the CM will send its SIGNATURE to the main web service, CM SIGNATURE contains elements to identity the CM and
     #how to handle it and the list of input it needs on the user interface. CM SIGNATURE can be find on app/constants.py file, this file must be change manually
-    #Also constants.py must contains a CM_ID that is a unique number that as to be defined by EASILab (easilab@hevs.ch)
+    #Also constants.py must contains a CM_ID that is a unique number that as to be defined by EASILab (support@easilabdev.ch)
 
     #  ---
     #  definitions:

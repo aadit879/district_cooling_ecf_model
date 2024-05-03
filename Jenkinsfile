@@ -60,7 +60,7 @@ pipeline {
         failure {
             echo "FAILED"
             emailext body: 'Check console output at $JOB_URL to view the results',
-            to: "aadit.malla@tuwien.ac.at;support@easilabdev.ch",
+            to: "malla@eeg.tuwien.ac.at;support@easilabdev.ch",
             subject: 'Jenkins pipeline failed : $PROJECT_NAME - #$BUILD_NUMBER'
         }
     }

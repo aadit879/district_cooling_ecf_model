@@ -7,7 +7,7 @@ pipeline {
                 checkout scm
             }
         }
-        
+
         stage('Build & Test') {
             steps {
                 script {
@@ -50,15 +50,18 @@ pipeline {
     }
 
     post {
-        success { 
-            echo "SUCCESS" 
+        success {
+            echo "SUCCESS"
             // always {
             //     emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-            // } 
+            // }
         }
-        
+
         failure {
             echo "FAILED"
+            emailext body: 'Check console output at $JOB_URL to view the results',
+            to: "malla@eeg.tuwien.ac.at;support@easilabdev.ch",
+            subject: 'Jenkins pipeline failed : $PROJECT_NAME - #$BUILD_NUMBER'
         }
     }
 }

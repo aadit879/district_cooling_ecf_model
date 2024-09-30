@@ -101,15 +101,15 @@ INPUTS_CALCULATION_MODULE = [
      'input_max': 100, 'cm_id': CM_ID  # Do no change this value
      },
 
-    {'input_name': 'Depreciation Time Individual Cooling',
-     'input_type': 'input',
-     'input_parameter_name': 'depreciation_ind',
-     'input_value': '15',
-     'input_priority': 1,
-     'input_unit': 'years',
-     'input_min': 0,
-     'input_max': 100, 'cm_id': CM_ID  # Do no change this value
-     },
+    # {'input_name': 'Depreciation Time Individual Cooling',
+    #  'input_type': 'input',
+    #  'input_parameter_name': 'depreciation_ind',
+    #  'input_value': '15',
+    #  'input_priority': 1,
+    #  'input_unit': 'years',
+    #  'input_min': 0,
+    #  'input_max': 100, 'cm_id': CM_ID  # Do no change this value
+    #  },
 ]
 
 

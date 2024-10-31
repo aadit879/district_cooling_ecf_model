@@ -18,11 +18,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-**Description**<br>
-
-* The function utils.to_hotmaps_csv converts the data downloaded from THERMOS database into a format required by the HOTMAPS’ calculation module.
-* The function utils. identify_demand_outlier identifies buildings that have extremely high heat demand values.
-
 
 
 
